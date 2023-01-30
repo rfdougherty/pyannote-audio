@@ -39,7 +39,10 @@ import torchaudio
 from pyannote.core import Segment
 from torch import Tensor
 
-torchaudio.set_audio_backend("soundfile")
+# RFD: sox_io is better support on linux (e.g., Amazon SageMaker Studio notebooks 
+# do not include soundfile and offer no easy way to add it.
+#torchaudio.set_audio_backend("soundfile")
+torchaudio.set_audio_backend("sox_io")
 
 AudioFile = Union[Text, Path, IOBase, Mapping]
 
